@@ -80,10 +80,11 @@ function CustomSvg(props) {
     .substring(0, 2);
 
   return (
-    <div style={styles.shape}>
+    <div id="avatar" style={styles.shape}>
       <svg
         version="1.1"
         viewBox="0 0 100 100"
+        fill={color}
         xmlns="http://www.w3.org/2000/svg"
         style={{ backgroundColor: color }}
       >
