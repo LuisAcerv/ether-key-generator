@@ -1,6 +1,6 @@
 # Getting Started with Create React App
 
-![image example1](examples/example1.png)
+![image example1](examples/example.png)
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
