@@ -2,7 +2,7 @@
 
 ![image example1](examples/example1.png)
 ![image example1](examples/example2.png)
-![image example1](examples/example4.png)
+![image example1](examples/example3.png)
 ![image example1](examples/example4.png)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
