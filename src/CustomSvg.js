@@ -1,11 +1,13 @@
-function GenerateLines() {
+function GenerateLines(props) {
   const arr = new Array(Math.floor(Math.random() * 8)).fill(0);
+  const n = props.numberFromAddress;
+
   return arr.map((x, i) => {
     const opacity = Math.random();
-    const x1 = Math.floor(Math.random() * 100);
-    const x2 = Math.floor(Math.random() * 100);
-    const y1 = Math.floor(Math.random() * 100);
-    const y2 = Math.floor(Math.random() * 100);
+    const x1 = Math.floor(Math.random() * n);
+    const x2 = Math.floor(Math.random() * n);
+    const y1 = Math.floor(Math.random() * n);
+    const y2 = Math.floor(Math.random() * n);
     const color = intToRGB(hashCode(makeRandomStr(10)));
 
     return (
@@ -25,10 +27,11 @@ function GenerateLines() {
 
 function GenerateCircles(props) {
   const arr = new Array(Math.floor(Math.random() * 10)).fill(0);
+  const n = props.numberFromAddress;
   return arr.map((x, i) => {
-    const cx = Math.floor(Math.random() * 150);
-    const cy = Math.floor(Math.random() * 150);
-    const r = Math.floor(Math.random() * 30);
+    const cx = Math.floor(Math.random() * n);
+    const cy = Math.floor(Math.random() * n);
+    const r = Math.floor(Math.random() * n);
     const opacity = Math.random();
     const color = intToRGB(hashCode(makeRandomStr(10)));
     return (
@@ -46,21 +49,22 @@ function GenerateCircles(props) {
 
 function GeneratePlygons(props) {
   const arr = new Array(Math.floor(Math.random() * 10)).fill(0);
+  const n = props.numberFromAddress;
   return arr.map((x, i) => {
     const color = intToRGB(hashCode(makeRandomStr(10)));
-    const p1 = Math.floor(Math.random() * 150);
-    const p2 = Math.floor(Math.random() * 150);
-    const p21 = Math.floor(Math.random() * 150);
-    const p3 = Math.floor(Math.random() * 150);
-    const p4 = Math.floor(Math.random() * 150);
-    const p41 = Math.floor(Math.random() * 150);
-    const p5 = Math.floor(Math.random() * 150);
+    const p1 = Math.floor(Math.random() * n);
+    const p2 = Math.floor(Math.random() * n);
+    const p21 = Math.floor(Math.random() * n);
+    const p3 = Math.floor(Math.random() * n);
+    const p4 = Math.floor(Math.random() * n);
+    const p41 = Math.floor(Math.random() * n);
+    const p5 = Math.floor(Math.random() * n);
     const opacity = Math.random();
     return (
       <polygon
         key={i}
         fill={"#" + color}
-        points={`${p1}, ${p2} ${p21}, ${p3},${p4} ${p41},${p5}`}
+        points={`${p1},${p2} ${p21},${p3},${p4}${p41},${p5}`}
         opacity={opacity}
       />
     );
@@ -69,6 +73,11 @@ function GeneratePlygons(props) {
 
 function CustomSvg(props) {
   const color = intToRGB(hashCode(props.address));
+  const numberFromAddress = parseInt(props.address, 16)
+    .toString()
+    .split(".")
+    .join("")
+    .substring(0, 2);
 
   return (
     <div style={styles.shape}>
@@ -78,9 +87,9 @@ function CustomSvg(props) {
         xmlns="http://www.w3.org/2000/svg"
         style={{ backgroundColor: color }}
       >
-        <GenerateCircles />
-        <GenerateLines />
-        <GeneratePlygons />
+        <GenerateCircles numberFromAddress={parseInt(numberFromAddress)} />
+        <GenerateLines numberFromAddress={parseInt(numberFromAddress)} />
+        <GeneratePlygons numberFromAddress={parseInt(numberFromAddress)} />
       </svg>
     </div>
   );
